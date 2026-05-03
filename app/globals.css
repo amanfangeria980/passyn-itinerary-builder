@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 110 40% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 110 40% 8%;
+
+    --primary: 79 86% 67%; /* #C8F562 */
+    --primary-foreground: 110 40% 8%;
+
+    --secondary: 110 30% 96%;
+    --secondary-foreground: 110 40% 12%;
+
+    --muted: 110 14% 96%;
+    --muted-foreground: 110 6% 40%;
+
+    --accent: 79 86% 90%;
+    --accent-foreground: 110 40% 12%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 110 12% 90%;
+    --input: 110 12% 90%;
+    --ring: 79 86% 50%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+    /* Default mouse pointer for non-text surfaces. Inputs/textareas/Tiptap
+       override this back to `text` via their own user-agent / scoped styles. */
+    cursor: default;
+    /* Hide the text-insertion caret globally so non-editable surfaces
+       (table cells, headings, paragraphs, buttons) never blink one. Real
+       editable elements re-enable it via the rule below. This also masks
+       Chrome's "caret browsing" (F7) caret when accidentally toggled on. */
+    caret-color: transparent;
+  }
+  input,
+  textarea,
+  select,
+  [contenteditable="true"],
+  [contenteditable=""],
+  .ProseMirror,
+  .ProseMirror * {
+    caret-color: auto;
+  }
+  body {
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: Fraunces, ui-serif, Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+  /* Prevent stray text-selection caret showing up when users click on
+     non-editable surfaces like headings, cards, buttons. */
+  h1, h2, h3, h4, h5, h6,
+  button, a, label,
+  th, td {
+    cursor: default;
+  }
+  a, button {
+    cursor: pointer;
+  }
+  /* Tiptap injects a div with class .ProseMirror; scope its text caret to
+     its own content area so it doesn't bleed into the surrounding card. */
+  .ProseMirror {
+    cursor: text;
+    outline: none;
+  }
+  .ProseMirror p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+    float: left;
+    height: 0;
+  }
+}
+
+/* Subtle brand accent for buttons + chips */
+.btn-passyn {
+  background-color: #c8f562;
+  color: #0d1f0a;
+}
+.btn-passyn:hover {
+  background-color: #b8eb4d;
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "email": "aniket@passyn.org",
+    "name": "Aniket Arora",
+    "role": "admin",
+    "password": "change-this-strong-password"
+  },
+  {
+    "email": "agent1@passyn.org",
+    "name": "Agent One",
+    "role": "agent",
+    "password": "change-this-strong-password"
+  }
+]
