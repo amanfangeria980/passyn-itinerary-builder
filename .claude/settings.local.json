@@ -17,7 +17,8 @@
       "Bash(curl -sf -o /dev/null http://127.0.0.1:3000/share/SPnXjAY7vHUJHv5Qs4dsE-qA)",
       "Bash(curl -sf -o /dev/null http://127.0.0.1:3000/dashboard)",
       "Bash(npx tsc *)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(npm view *)"
     ]
   }
 }
