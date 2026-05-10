@@ -55,9 +55,10 @@ export async function r2Get(key: string): Promise<{
     const out = await r2Client().send(
       new GetObjectCommand({ Bucket: r2Bucket(), Key: key }),
     );
-    const body = out.Body;
+    const body = out.Body as
+      | { transformToByteArray: () => Promise<Uint8Array> }
+      | undefined;
     if (!body) return null;
-    // @ts-expect-error AWS SDK Body has transformToByteArray in node runtime
     const bytes = await body.transformToByteArray();
     return {
       body: Buffer.from(bytes),

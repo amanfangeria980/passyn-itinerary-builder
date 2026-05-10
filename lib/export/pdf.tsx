@@ -628,7 +628,14 @@ function PricingSection({ data }: { data: Itinerary }) {
       {p.breakdown && p.breakdown.length > 0 && (
         <View style={styles.breakdown}>
           {p.breakdown.map((b, i) => (
-            <View key={i} style={[styles.breakdownRow, i === 0 && { borderTop: 0 }]}>
+            <View
+              key={i}
+              style={
+                i === 0
+                  ? [styles.breakdownRow, { borderTop: 0 }]
+                  : styles.breakdownRow
+              }
+            >
               <Text>{b.label}</Text>
               <Text style={{ fontFamily: "Helvetica-Bold" }}>{formatINR(b.amount)}</Text>
             </View>

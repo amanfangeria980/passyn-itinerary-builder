@@ -15,7 +15,9 @@
       "Bash(curl -sf -o /dev/null http://127.0.0.1:3000/itinerary/48931c77-4b3b-4966-80a2-2c56ba0c772b/edit)",
       "Bash(curl -s -o \"/tmp/passyn-test.pdf\" -w \"status=%{http_code} bytes=%{size_download} type=%{content_type}\\\\n\" \"http://127.0.0.1:3000/api/itinerary/48931c77-4b3b-4966-80a2-2c56ba0c772b/export/pdf\" --cookie-jar /tmp/cookies.txt --cookie /tmp/cookies.txt)",
       "Bash(curl -sf -o /dev/null http://127.0.0.1:3000/share/SPnXjAY7vHUJHv5Qs4dsE-qA)",
-      "Bash(curl -sf -o /dev/null http://127.0.0.1:3000/dashboard)"
+      "Bash(curl -sf -o /dev/null http://127.0.0.1:3000/dashboard)",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)"
     ]
   }
 }

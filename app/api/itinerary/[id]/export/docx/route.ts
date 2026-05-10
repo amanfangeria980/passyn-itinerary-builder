@@ -51,10 +51,13 @@ export async function GET(
   const logoBuf = await loadLogo();
   const buf = await renderItineraryDocx(parsed.data, logoBuf);
   const filename = `${it.clientName.replace(/[^a-z0-9]+/gi, "-")}-itinerary.docx`;
-  return new Response(buf, {
+  const mime =
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+  const u8 = new Uint8Array(buf.byteLength);
+  u8.set(buf);
+  return new Response(new Blob([u8], { type: mime }), {
     headers: {
-      "content-type":
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "content-type": mime,
       "content-disposition": `attachment; filename="${filename}"`,
       "cache-control": "no-store",
     },

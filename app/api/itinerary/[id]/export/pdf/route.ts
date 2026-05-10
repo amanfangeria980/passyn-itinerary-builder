@@ -71,7 +71,9 @@ export async function GET(
 
   const buf = await renderItineraryPdf(data, logoData);
   const filename = `${it.clientName.replace(/[^a-z0-9]+/gi, "-")}-itinerary.pdf`;
-  return new Response(buf, {
+  const u8 = new Uint8Array(buf.byteLength);
+  u8.set(buf);
+  return new Response(new Blob([u8], { type: "application/pdf" }), {
     headers: {
       "content-type": "application/pdf",
       "content-disposition": `inline; filename="${filename}"`,

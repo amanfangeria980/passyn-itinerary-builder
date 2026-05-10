@@ -48,7 +48,15 @@ export async function GET(
   const obj = await r2Get(key);
   if (!obj) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  return new Response(obj.body, {
+  // Web `Response` BodyInit under current @types/node + lib.dom is fussy
+  // about generic Buffer / Uint8Array; copy into a fresh ArrayBuffer-backed
+  // Uint8Array so it satisfies `BlobPart`.
+  const u8 = new Uint8Array(obj.body.byteLength);
+  u8.set(obj.body);
+  const blob = new Blob([u8], {
+    type: obj.contentType ?? a.mime ?? "application/octet-stream",
+  });
+  return new Response(blob, {
     headers: {
       "content-type": obj.contentType ?? a.mime ?? "application/octet-stream",
       "cache-control": "public, max-age=31536000, immutable",
